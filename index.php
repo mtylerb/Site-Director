@@ -1,6 +1,15 @@
 <?php
 
 /**
+ * Site Director Plugin for Wolf CMS <http://www.tbeckett.net/articles/plugins/site_director.xhtml>
+ *
+ * Copyright (C) 2011 Tyler Beckett <tyler@tbeckett.net>
+ * 
+ * Dual licensed under the MIT (/license/mit-license.txt)
+ * and GPL (/license/gpl-license.txt) licenses.
+ */
+
+/**
  * Define Site Director Version
  */
 define('S_D_VER','0.0.1');
@@ -30,15 +39,6 @@ else
 	}
 }
 
-/**
- * Site Director Plugin for Wolf CMS <http://www.tbeckett.net/articles/plugins/site_director.xhtml>
- *
- * Copyright (C) 2011 Tyler Beckett <tyler@tbeckett.net>
- * 
- * Dual licensed under the MIT (/license/mit-license.txt)
- * and GPL (/license/gpl-license.txt) licenses.
- */
-
 Plugin::setInfos(array(
     'id'          => 'site_director',
     'title'       => __('Site Director'), 
@@ -58,6 +58,11 @@ error_reporting((DEBUG ? (E_ALL | E_STRICT) : 0));
  * Wait for page to be found via notification from Observer class.
  */
 Observer::observe('page_found', 'direct_site');
+
+/** 
+ * Version check.  Assuming that 0.7.4 will introduce new Observer notification "view_page_edit_tab_links" else, wait for "view_page_edit_plugins"
+ * notification
+ */
 if (($ver_check[0] >= 1) || ($ver_check[0] < 1 && $ver_check[1] >= 7 && $ver_check[2] >= 4))
 {
 	Observer::observe('view_page_edit_tab_links', 'edit_link');
@@ -82,6 +87,9 @@ function edit_link()
 
 function sd_settings($args)
 {
+	/** 
+	 * Version check.  Assuming that 0.7.4 will introduce new Observer notification "view_page_edit_tab_links"
+	 */
 	$ver_check = explode('.',CMS_VERSION);
 	if ($ver_check[0] == 0 && $ver_check[1] <= 7 && $ver_check[2] < 4)
 	{
@@ -92,7 +100,21 @@ function sd_settings($args)
 	</div>'."\r\n");
 		echo('    <div id="metainfo-content" class="pages">'."\r\n");
 	};
-	echo new View(PLUGINS_ROOT . '/site_director/views/sd_settings', $args);
+	
+	/** 
+	 * Call for settings from database and set to $params
+	 */
+	
+	$sql = "";
+	
+	/**
+	 * Call settings layout for Page Edit screen.
+	 */
+	echo new View(PLUGINS_ROOT . '/site_director/views/sd_settings', $params);
+	
+	/** 
+	 * Version check.  Assuming that 0.7.4 will introduce new Observer notification "view_page_edit_tab_links"
+	 */
 	if ($ver_check[0] == 0 && $ver_check[1] <= 7 && $ver_check[2] < 4)
 	{
 		echo('    </div>'."\r\n");
