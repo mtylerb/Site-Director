@@ -12,7 +12,7 @@
 /**
  * Define Site Director Version
  */
-define('S_D_VER','0.0.1');
+define('S_D_VER','0.1.0');
 
 /**
  * Security measure for Wolf 0.7.0+
