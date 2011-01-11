@@ -13,6 +13,7 @@
  * Define Site Director Version
  */
 define('S_D_VER','0.1.0');
+define('S_D_NAME',__('Site Director'));
 
 /**
  * Security measure for Wolf 0.7.0+
@@ -41,7 +42,7 @@ else
 
 Plugin::setInfos(array(
     'id'          => 'site_director',
-    'title'       => __('Site Director'), 
+    'title'       => S_D_NAME, 
     'description' => __('Allows you to serve a different layout based on which browser is requesting your site.'), 
     'version'     => S_D_VER,
     'license'     => 'MIT',
@@ -59,7 +60,7 @@ error_reporting((DEBUG ? (E_ALL | E_STRICT) : 0));
 /**
  * Add settings page in to backend.
  */
-//Plugin::addController('site_director', '__(Site Director)');
+Plugin::addController('site_director', S_D_NAME);
 
 /**
  * Wait for page to be found via notification from Observer class.
