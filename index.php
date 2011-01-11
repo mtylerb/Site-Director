@@ -51,8 +51,15 @@ Plugin::setInfos(array(
     'require_wolf_version' => '0.7.0'
 ));
 
-// Setting error display depending on debug mode or not
+/**
+ * Setting error display depending on debug mode or not
+ */
 error_reporting((DEBUG ? (E_ALL | E_STRICT) : 0));
+
+/**
+ * Add settings page in to backend.
+ */
+//Plugin::addController('site_director', '__(Site Director)');
 
 /**
  * Wait for page to be found via notification from Observer class.
@@ -72,7 +79,7 @@ if (($ver_check[0] >= 1) || ($ver_check[0] < 1 && $ver_check[1] >= 7 && $ver_che
 };
 
 /**
- * direct_site is fired upon notification from Observer class.
+ * direct_site is fired upon "page_found" notification from Observer class.
  * $args = $page variable passed from notification in main.php.
  */
 function direct_site($args)
