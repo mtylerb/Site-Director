@@ -41,5 +41,14 @@ class SiteDirectorController extends PluginController
         $this->setLayout('backend');
         $this->assignToLayout('sidebar', new View('../../plugins/site_director/views/sidebar'));
     }
+	
+	public function index($page = 0)
+    {
+	$this->display('site_director/views/index', array(/*
+            'tags' => $tags,
+            'currentpage' => $CurPage,
+            'lastpage' => $lastpage*/
+        ));
+    }
 }
 ?>
