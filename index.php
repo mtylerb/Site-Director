@@ -10,10 +10,15 @@
  */
 
 /**
- * Define Site Director Version
+ * Define Site Director Variables
  */
 define('S_D_VER','0.1.0');
 define('S_D_NAME',__('Site Director'));
+
+/**
+ * Include SiteDirector class
+ */
+include_once 'SiteDirector.php';
 
 /**
  * Security measure for Wolf 0.7.0+
@@ -22,23 +27,7 @@ if (!defined('CMS_VERSION'))
 {
 	Flash::set('error', __('Site Director Fatal Error: CMS_VERSION not defined.'));
 }
-else 
-{
-	$ver_check = explode('.',CMS_VERSION);
-	if (($ver_check[0] >= 1) || ($ver_check[0] < 1 && $ver_check[1] > 6))
-	{
-		if (!defined('IN_CMS')) 
-		{
-			Flash::set('error', __('Site Director Fatal Error:  Not In CMS'));
-			exit();
-		}
-	}
-	else if ($ver_check[0] < 1 && $ver_check[1] < 7)
-	{
-		Flash::set('error', __('Site Director ' . S_D_VER . ' is not supported by this version of Wolf CMS.  Wolf CMS version 0.7.0 and higher required.'));
-		exit();
-	}
-}
+$ver_check = explode('.',CMS_VERSION);
 
 Plugin::setInfos(array(
     'id'          => 'site_director',
@@ -114,6 +103,8 @@ function sd_settings($args)
 	 */
 	
 	$sql = "";
+	
+	$params = SiteDirector::get_settings();
 	
 	/**
 	 * Call settings layout for Page Edit screen.

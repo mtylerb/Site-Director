@@ -29,7 +29,7 @@ else
 	}
 	else if ($ver_check[0] < 1 && $ver_check[1] < 7)
 	{
-		Flash::set('error', __('Site Director ' . S_D_VER . ' is not supported by this version of Wolf CMS.  Wolf CMS version 0.7.0 and higher required.'));
+		Flash::set('error', sprintf(__('Site Director %s is not supported by this version of Wolf CMS.  Wolf CMS version 0.7.0 and higher required.'),$ver));
 		exit();
 	}
 }

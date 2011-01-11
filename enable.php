@@ -8,6 +8,8 @@
  * Dual licensed under the MIT (/license/mit-license.txt)
  * and GPL (/license/gpl-license.txt) licenses.
  */
+include '/index.php';
+$ver = S_D_VER;
 
 /**
  * Security measure for Wolf 0.7.0+
@@ -29,7 +31,7 @@ else
 	}
 	else if ($ver_check[0] < 1 && $ver_check[1] < 7)
 	{
-		Flash::set('error', __('Site Director ' . S_D_VER . ' is not supported by this version of Wolf CMS.  Wolf CMS version 0.7.0 and higher required.'));
+		Flash::set('error', sprintf(__('Site Director %s is not supported by this version of Wolf CMS.  Wolf CMS version 0.7.0 and higher required.'),$ver));
 		exit();
 	}
 }
