@@ -12,7 +12,7 @@
 /**
  * Define Site Director Variables
  */
-define('S_D_VER','0.1.0');
+define('S_D_VER','0.2.0');
 define('S_D_NAME',__('Site Director'));
 
 /**
