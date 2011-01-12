@@ -58,7 +58,7 @@ Observer::observe('page_found', 'direct_site');
 
 /** 
  * Version check.  Assuming that 0.7.4 will introduce new Observer notification "view_page_edit_tab_links" else, wait for "view_page_edit_plugins"
- * notification
+ * notification.  Will be removed in future versions and this plugin will require 0.7.4+.
  */
 if (($ver_check[0] >= 1) || ($ver_check[0] < 1 && $ver_check[1] >= 7 && $ver_check[2] >= 4))
 {
@@ -85,7 +85,7 @@ function edit_link()
 function sd_settings($args)
 {
 	/** 
-	 * Version check.  Assuming that 0.7.4 will introduce new Observer notification "view_page_edit_tab_links"
+	 * Version check.  Assuming that 0.7.4 will introduce new Observer notification "view_page_edit_tab_links", previous versions require this
 	 */
 	$ver_check = explode('.',CMS_VERSION);
 	if ($ver_check[0] == 0 && $ver_check[1] <= 7 && $ver_check[2] < 4)
@@ -112,7 +112,7 @@ function sd_settings($args)
 	echo new View(PLUGINS_ROOT . '/site_director/views/sd_settings', $params);
 	
 	/** 
-	 * Version check.  Assuming that 0.7.4 will introduce new Observer notification "view_page_edit_tab_links"
+	 * Version check.  Assuming that 0.7.4 will introduce new Observer notification "view_page_edit_tab_links", previous versions require this
 	 */
 	if ($ver_check[0] == 0 && $ver_check[1] <= 7 && $ver_check[2] < 4)
 	{
