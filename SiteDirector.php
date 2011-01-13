@@ -16,7 +16,7 @@ class SiteDirector
 		
 	}
 	
-	public static function get_settings()
+	public static function getSettings()
 	{
 		$pdo = Record::getConnection();
 		$assignments = array();
@@ -36,7 +36,12 @@ class SiteDirector
 		
 		$sdsettings = array('assignments' => $assignments, 'settings' => $settings);
 		
-		return $sdsettings;
+		if (!empty($assignments) && !empty($settings))
+		{
+			return $sdsettings;
+		} else {
+			return FALSE;
+		};
 	}
 
 }

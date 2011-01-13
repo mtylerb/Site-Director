@@ -44,7 +44,7 @@ class SiteDirectorController extends PluginController
 	
 	public function index($page = 0)
     {
-	$params = SiteDirector::get_settings();
+	$params = SiteDirector::getSettings();
 	
 	$this->display('site_director/views/index', array(/*
             'tags' => $tags,

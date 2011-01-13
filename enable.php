@@ -51,7 +51,7 @@ $stmt->execute();
 /**
  * Create settings table in database.  Holds information on browser definitions, names, etc.
  */
-$sql = 'CREATE TABLE `'.TABLE_PREFIX.'sd_settings` (`id` INT NOT NULL, `browser_id` INT NOT NULL, `browser_def` VARCHAR( 125 ) NOT NULL, `browser_name` VARCHAR( 50 ) NOT NULL, `Template Name` VARCHAR( 50 ) NOT NULL, UNIQUE (`id`))';
+$sql = 'CREATE TABLE `'.TABLE_PREFIX.'sd_settings` (`id` INT NOT NULL, `browser_id` INT NOT NULL, `browser_def` VARCHAR( 125 ) NOT NULL, `browser_name` VARCHAR( 50 ) NOT NULL, `template_name` VARCHAR( 50 ) NOT NULL, UNIQUE (`id`))';
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 

@@ -1,3 +1,11 @@
+<?php
+	/**
+	 * Variabls are:
+	 * $settings -> Array(id, browser_id, browser_def, browser_name, template_name);
+	 * $assignments -> Array(id, page_id, parent_id, layout_id, browser_id);
+	 */
+?>
+
 <div id="sd_settings" class="page">
 	<div id="div-sd-settings" title="<?php echo __('Site Director Settings'); ?>">
 		<table cellpadding="0" cellspacing="0" border="0">

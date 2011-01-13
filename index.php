@@ -60,12 +60,15 @@ Observer::observe('page_found', 'direct_site');
  * Version check.  Assuming that 0.7.4 will introduce new Observer notification "view_page_edit_tab_links" else, wait for "view_page_edit_plugins"
  * notification.  Will be removed in future versions and this plugin will require 0.7.4+.
  */
-if (($ver_check[0] >= 1) || ($ver_check[0] < 1 && $ver_check[1] >= 7 && $ver_check[2] >= 4))
+if (SiteDirector::getSettings())
 {
-	Observer::observe('view_page_edit_tab_links', 'edit_link');
-	Observer::observe('view_page_edit_tabs', 'sd_settings');
-} else {
-	Observer::observe('view_page_edit_plugins', 'sd_settings');
+	if (($ver_check[0] >= 1) || ($ver_check[0] < 1 && $ver_check[1] >= 7 && $ver_check[2] >= 4))
+	{
+		Observer::observe('view_page_edit_tab_links', 'edit_link');
+		Observer::observe('view_page_edit_tabs', 'sd_settings');
+	} else {
+		Observer::observe('view_page_edit_plugins', 'sd_settings');
+	};
 };
 
 /**
@@ -74,7 +77,10 @@ if (($ver_check[0] >= 1) || ($ver_check[0] < 1 && $ver_check[1] >= 7 && $ver_che
  */
 function direct_site($args)
 {
-	//echo('direct_site works');
+	/**
+	 * Still need to create.  Pass args to the Page object thereby replacing the normally defined layout with the one specified by the user
+	 * for the specific browser being used to display the site.
+	 */
 };
 
 function edit_link()
@@ -82,7 +88,7 @@ function edit_link()
 	echo('<li class="tab"><a href="#sd_settings">' . __('Site Director Settings') . '</a></li>'."\r\n");
 }
 
-function sd_settings($args)
+function sd_settings($args = FALSE)
 {
 	/** 
 	 * Version check.  Assuming that 0.7.4 will introduce new Observer notification "view_page_edit_tab_links", previous versions require this
@@ -104,7 +110,7 @@ function sd_settings($args)
 	
 	$sql = "";
 	
-	$params = SiteDirector::get_settings();
+	$params = SiteDirector::getSettings();
 	
 	/**
 	 * Call settings layout for Page Edit screen.
